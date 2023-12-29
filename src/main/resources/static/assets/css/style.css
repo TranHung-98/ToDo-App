@@ -1,0 +1,110 @@
+*{
+  list-style: none;
+  box-sizing: border-box;
+  text-decoration: 0;
+}
+
+.filter {
+  width: 250px;
+  border: 0;
+  padding: .5rem 1rem;
+  font-size: 1.25rem;
+  border-radius: .3rem;
+  background-color: #cfcfcf;
+}
+
+.border-radius {
+  border-radius: 10px;
+}
+
+.pading {
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+p {
+  margin: 5px 0;
+}
+
+p.error-filter {
+  font-size: 1.3rem;
+  color: #8C2DFA;
+  margin: 5px 0;
+}
+
+.rounded-3 {
+  border-radius: .5rem!important;
+}
+
+.backgroun.list {
+  top: 48px;
+  left: 0;
+  display: none;
+  width: 100%;
+  padding-left: 0;
+  border-radius: 5px;
+  box-shadow: 0 6px 10px 0 rgba(51, 51, 51, 0.2), 0 0px 5px 0 rgba(51, 51, 51, 0.19);
+}
+
+.backgroun.list li.item {
+  padding: 10px 25px;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.2);
+}
+
+.backgroun.list li.item:hover {
+  color: #ff3131;
+  background-color: rgba(51, 51, 51, 0.2) ;
+}
+
+.modal-content{
+  font-size: 1.5rem;
+  border: 1.2px solid rgba(0,0,0,.2);
+  box-shadow: 0 6px 10px 0 rgba(51, 51, 51, 0.2), 0 0px 5px 0 rgba(51, 51, 51, 0.19);
+}
+
+.form-control {
+  font-size: 1.4rem;
+}
+
+.form-group label{
+  padding: 10px 0;
+  display: block;
+}
+
+h5.modal-title {
+font-size: 1.8rem;
+}
+
+.close {
+  border: none;
+  cursor: pointer;
+  font-size: 1.6rem;
+  background-color: transparent;
+}
+
+.modal-footer {
+  padding: 5px 0;
+  margin: 0;
+  padding-top: 20px;
+}
+
+button.btn.btn-lg.btn-primary {
+  width: 100%;
+}
+
+.modal-dialog {
+  display: none;
+}
+
+footer.p-4.mt-md-4.border-radius.bg-light {
+  overflow: auto;
+}
+
+div#list {
+  height: 555px;
+  overflow: auto;
+}
+
+.modal-content {
+  top: -250px;
+}

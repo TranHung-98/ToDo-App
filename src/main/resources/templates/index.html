@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <title>ToDo List</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+</head>
+<body>
+
+<div class="container-xl">
+    <header>
+        <h1 class="text-center mt-4 text-primary">TODO LIST</h1>
+    </header>
+    <main class="d-flex justify-content-between ">
+        <button type="button" class="btn btn-primary btn-lg w-auto" id="add-task">Add Task</button>
+        <div class="form-group pd-r-0 d-flex w-25">
+            <select name="role_id" id="filter" class="form-control">
+                <optgroup label="Filter">
+                    <option value="All">All</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Not Started">Not Started</option>
+                    <option value="In Progress">In Progress</option>
+                </optgroup>
+            </select>
+        </div>
+    </main>
+    <footer class="p-4 mt-md-4 border-radius bg-light" id="list"></footer>
+    <div class="modal-dialog" id="modal">
+        <div class="modal-content">
+
+            <form id="form-edit" enctype="multipart/form-data">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit</h5>
+                    <button type="button" id="close" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group form-group-w-100">
+                                <label>Skill and level</label>
+                                <input class="form-control" name="" id="skill"  type="text" required value="" placeholder="Java and level"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group pd-r-0" style="display: none">
+                        <input class="form-control" name="" id="id" type="text" value=""/>
+                    </div>
+                    <div class="form-group pd-r-0">
+                        <label>Date</label>
+                        <input class="form-control" name="" id="date" type="datetime-local" value=""/>
+                    </div>
+                    <div class="form-group pd-r-0">
+                        <label>Status</label>
+                        <select name="role_id" class="form-control" id="status" required>
+                            <optgroup label="Status Completed">
+                                <option value="Completed">Completed</option>
+                                <option value="Not Started">Not Started</option>
+                                <option value="In Progress">In Progress</option>
+                                <option selected="selected" value="3">--Select--</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="edit-row" class="btn btn-lg btn-primary">Edit Row</button>
+                </div>
+
+            </form>
+
+            <form id="form-add" enctype="multipart/form-data">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Row</h5>
+                    <button type="button"  class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group form-group-w-100">
+                                <label>Skill and level</label>
+                                <input class="form-control" id="skillInput" name="name" type="text" required value="" placeholder="Java and level"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group pd-r-0">
+                        <label>Date</label>
+                        <input class="form-control" name="" id="dateInput" type="datetime-local"
+                               value=""/>
+                    </div>
+                    <div class="form-group pd-r-0">
+                        <label>Status</label>
+                        <select name="role_id" class="form-control" id="statusInput" required>
+                            <optgroup label="Status Completed">
+                                <option value="Completed">Completed</option>
+                                <option value="Not Started">Not Started</option>
+                                <option value="In Progress">In Progress</option>
+                                <option selected="selected" value="3">--Select--</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="saveTrainingButton" class="btn btn-lg btn-primary">Add Task</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/ajax.js"></script>
+<script src="assets/js/scrip.js"></script>
+
+</body>
+</html>
