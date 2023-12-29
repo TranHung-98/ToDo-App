@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/")
 @AllArgsConstructor
+@CrossOrigin("http://127.0.0.1:5501/")
 public class TrainingController {
 
 
@@ -68,7 +69,19 @@ public class TrainingController {
         }
     }
 
+    @DeleteMapping("/deleteTraining/{ids}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteTraining(@PathVariable List<Long> ids) {
+        try {
+            boolean deleted = trainingService.deleteById(ids);
 
+            if (!deleted) {
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to delete training");
+            }
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An error occurred during deletion");
+        }
+    }
 
 
 }

@@ -78,4 +78,15 @@ public class TrainingService {
 
     }
 
+    @Transactional
+    public  boolean deleteById(List<Long> ids) {
+        try {
+            trainingRepository.deleteByIdIn(ids);
+            return true;
+        }catch (HibernateException e) {
+            return false;
+        }
+
+    }
+
 }

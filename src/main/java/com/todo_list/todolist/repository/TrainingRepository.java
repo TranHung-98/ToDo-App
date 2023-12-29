@@ -26,9 +26,9 @@ public interface TrainingRepository extends JpaRepository<Training, Long> {
             @Param("status") String status
     ) throws HibernateException;
 
-
     @Query("FROM Training t WHERE t.status = :status")
     List<Training> findAllByStatus(@Param("status")String status) throws HibernateException;
+
 
     @Transactional
     @Modifying
@@ -45,4 +45,9 @@ public interface TrainingRepository extends JpaRepository<Training, Long> {
             @Param("skill") String skill,
             @Param("id") Long id
     ) throws HibernateException;
+
+    @Modifying
+    @Query("DELETE FROM Training t WHERE t.id IN :ids")
+    void deleteByIdIn(@Param("ids") List<Long> ids) throws HibernateException;
+
 }
