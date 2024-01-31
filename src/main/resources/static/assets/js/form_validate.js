@@ -1,5 +1,6 @@
-var fields = $('#skill, #date, #status');
-var formValidate = $('#skillInput,#dateInput,#statusInput');
+const fields = $('#skill, #date, #status');
+const formValidate = $('#skillInput,#dateInput,#statusInput');
+
 $(document).ready(function () {
 
     // Lắng nghe sự kiện khi người dùng nhập liệu vào input
@@ -7,7 +8,7 @@ $(document).ready(function () {
 
     // Xử lý khi nhập dữ liệu
     fields.on('input', function () {
-        var errorMessageElement = $(this).next('.error-message');
+        let errorMessageElement = $(this).next('.error-message');
         errorMessageElement.text('');
         $(this).css("border", "");
     });
@@ -19,7 +20,7 @@ $(document).ready(function () {
 
     // Xử lý khi nhập dữ liệu
     formValidate.on('input', function () {
-        var errorMessageElement = $(this).next('.error-message');
+        let errorMessageElement = $(this).next('.error-message');
         errorMessageElement.text('');
         $(this).css("border", "");
     });
@@ -61,7 +62,7 @@ $(document).ready(function () {
 });
 
 function handleValidation(element) {
-    var errorMessageElement = element.next('.error-message');
+    let errorMessageElement = element.next('.error-message');
     if (element.val().trim() === '') {
         errorMessageElement.text('Please enter this field!');
         element.css("border", "1.5px solid red");
@@ -75,15 +76,15 @@ function handleValidation(element) {
 // Hàm kiểm tra giá trị trùng lặp
 function checkDuplicateInput() {
     // Lấy giá trị mới từ input
-    var inputValue = $('#skillInput').val().trim();
+    let inputValue = $('#skillInput').val().trim();
 
     // Lấy tất cả các giá trị hiện có của các phần tử có class "skilItem"
-    var existingValues = $('.skilItem').map(function () {
+    let existingValues = $('.skilItem').map(function () {
         return $(this).text().trim();
     }).get();
 
     // Kiểm tra xem giá trị mới có trùng lặp với các giá trị hiện có hay không
-    var isDuplicate = existingValues.includes(inputValue);
+    let isDuplicate = existingValues.includes(inputValue);
 
     // Hiển thị thông báo nếu có trùng lặp
     if (isDuplicate) {

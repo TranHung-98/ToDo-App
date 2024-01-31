@@ -1,9 +1,10 @@
 $(document).ready(function () {
-    var closeElements = $(".close");
-    var formEdit = $("#form-edit");
-    var formAdd = $("#form-add");
-    var modal = $("#modal");
-    var addTask = $("#add-task");
+
+    let closeElements = $(".close");
+    let formEdit = $("#form-edit");
+    let formAdd = $("#form-add");
+    let modal = $("#modal");
+    let addTask = $("#add-task");
 
     closeElements.click(function () {
         modal.hide();

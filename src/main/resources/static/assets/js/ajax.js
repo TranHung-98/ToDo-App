@@ -12,9 +12,9 @@ $(function () {
     // Hàm Save khi có người dùng đăng kí hoặc add
     $("#saveTrainingButton").click(function () {
 
-        var skill = $("#skillInput").val();
-        var date = $("#dateInput").val();
-        var status = $("#statusInput").val();
+        let skill = $("#skillInput").val();
+        let date = $("#dateInput").val();
+        let status = $("#statusInput").val();
 
 
         if (checkDuplicateInput()) {
@@ -27,7 +27,7 @@ $(function () {
             $(this).submit();
         }
 
-        var requestData = {
+        const requestData = {
             skill: skill,
             date: date,
             status: status
@@ -51,10 +51,10 @@ $(function () {
 
     // Hàm update (edit)
     $('#edit-row').on('click', function () {
-        var skill = $('#skill').val();
-        var date = $('#date').val();
-        var state = $('#status').val();
-        var id = $('#id').val();
+        let skill = $('#skill').val();
+        let date = $('#date').val();
+        let state = $('#status').val();
+        let id = $('#id').val();
 
         switch (state) {
             case 1:
@@ -73,7 +73,7 @@ $(function () {
 
 
         if (id && skill && date && state) {
-            var updateData = {
+            const updateData = {
                 id: id, skill: skill, date: date, status: state
             };
 
@@ -98,7 +98,7 @@ $(function () {
     // Xử lý Filter:
     $('#filter').on('change', function () {
         // Get the selected value
-        var selectedValue = $(this).val();
+        let selectedValue = $(this).val();
 
         // Clear existing content
         $('#list').html('');
@@ -135,15 +135,15 @@ function handleResponse(response) {
     if (Array.isArray(response) && response.length > 0) {
         response.forEach(function (trainingDto) {
             // Create unique checkbox ID based on trainingDto.id
-            var checkboxId = 'flexCheckDefault-' + trainingDto.id;
+            let checkboxId = 'flexCheckDefault-' + trainingDto.id;
 
 
             // Xác định class dựa trên giá trị status
-            var statusClass = getStatusClass(trainingDto.status);
+            let statusClass = getStatusClass(trainingDto.status);
 
             // Format the date using moment.js
-            var dateString = trainingDto.date;
-            var formattedDate = formatDateTime(dateString);
+            let dateString = trainingDto.date;
+            let formattedDate = formatDateTime(dateString);
 
             // Append new items to the list
             $('#list').append(`
@@ -177,14 +177,14 @@ function handleResponse(response) {
 
 
     response.forEach(function (list) {
-        var  clickButton = document.getElementById(`edit-${list.id}`);
+        let  clickButton = document.getElementById(`edit-${list.id}`);
         $(clickButton).on('click',function () {
             openModal(list);
         })
     })
 
     response.forEach(function (list) {
-        var  clickElement = document.getElementById(`remove-${list.id}`);
+        let  clickElement = document.getElementById(`remove-${list.id}`);
         $(clickElement).on('click',function () {
             deleteItem(list);
         })
@@ -214,14 +214,14 @@ function deleteItem(list) {
 // Xoá khi checked
 function deleteSelectedItems() {
     // Get the selected checkboxes
-    var selectedCheckboxes = $('.form-check input[type="checkbox"]:checked');
+    let selectedCheckboxes = $('.form-check input[type="checkbox"]:checked');
 
     // Create an array to store the IDs of selected items
-    var selectedIds = [];
+    let selectedIds = [];
 
     // Loop through the selected checkboxes and extract the ID values
     selectedCheckboxes.each(function() {
-        var itemId = $(this).closest('.result_item').find('input[type="text"]').val();
+        let itemId = $(this).closest('.result_item').find('input[type="text"]').val();
         selectedIds.push(itemId);
     });
 
@@ -229,7 +229,7 @@ function deleteSelectedItems() {
     console.log('Selected IDs:', selectedIds);
 
     // Construct the URL with the selected IDs
-    var url = "/deleteTraining/" + selectedIds.join(',');
+    let url = "/deleteTraining/" + selectedIds.join(',');
 
     // Make the AJAX request to delete the selected items
     $.ajax({

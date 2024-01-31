@@ -7,6 +7,7 @@ import com.todo_list.todolist.repository.TrainingRepository;
 import lombok.AllArgsConstructor;
 import org.hibernate.HibernateException;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,10 +16,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
 public class TrainingService {
 
-    private final TrainingRepository trainingRepository;
+    @Autowired
+    private  TrainingRepository trainingRepository;
 
     public List<TrainingDto> getAllTraining() {
         List<Training> trainings = trainingRepository.findAll();
@@ -50,21 +51,19 @@ public class TrainingService {
         try {
             trainingRepository.saveTraining(skill, date, status);
         } catch (HibernateException e) {
-            e.printStackTrace();
             return false;
         }
         return true;
     }
 
     @Transactional
-    public boolean updateAll(@NotNull TrainingRequest trainingRequest) {
-        int updatedRows = trainingRepository.updateTraining(
+    public void updateTodoAll(@NotNull TrainingRequest trainingRequest) {
+       trainingRepository.updateTraining(
                 Long.valueOf(trainingRequest.getId()),
                 trainingRequest.getSkill(),
                 trainingRequest.getDate(),
                 trainingRequest.getStatus()
         );
-        return updatedRows > 0;
     }
 
     @Transactional

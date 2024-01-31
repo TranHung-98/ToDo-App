@@ -5,6 +5,7 @@ import com.todo_list.todolist.dto.TrainingRequest;
 import com.todo_list.todolist.service.TrainingService;
 import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +16,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/")
-@AllArgsConstructor
 @CrossOrigin("http://127.0.0.1:5501/")
 public class TrainingController {
 
-
-    private final TrainingService trainingService;
+    @Autowired
+    private TrainingService trainingService;
 
     @GetMapping("/todo")
     public ResponseEntity<List<TrainingDto>> getAllTraining(){
@@ -50,7 +50,7 @@ public class TrainingController {
     @PutMapping("/updateTraining")
     @ResponseStatus(HttpStatus.OK)
     public void updateTraining(@RequestBody TrainingRequest trainingRequest) {
-        trainingService.updateAll(trainingRequest);
+        trainingService.updateTodoAll(trainingRequest);
     }
 
 
@@ -58,7 +58,7 @@ public class TrainingController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteTraining(@PathVariable Long id, @PathVariable String skill) {
         try {
-            // Assuming trainingService.deleteAllBySkillAndId returns a boolean indicating success
+
             boolean deleted = trainingService.deleteAllBySkillAndId(skill, id);
 
             if (!deleted) {
