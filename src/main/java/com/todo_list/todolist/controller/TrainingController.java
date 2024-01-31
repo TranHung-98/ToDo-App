@@ -3,9 +3,7 @@ package com.todo_list.todolist.controller;
 import com.todo_list.todolist.dto.TrainingDto;
 import com.todo_list.todolist.dto.TrainingRequest;
 import com.todo_list.todolist.service.TrainingService;
-import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +17,11 @@ import java.util.List;
 @CrossOrigin("http://127.0.0.1:5501/")
 public class TrainingController {
 
-    @Autowired
-    private TrainingService trainingService;
+    private final TrainingService trainingService;
+
+    public TrainingController(TrainingService trainingService) {
+        this.trainingService = trainingService;
+    }
 
     @GetMapping("/todo")
     public ResponseEntity<List<TrainingDto>> getAllTraining(){

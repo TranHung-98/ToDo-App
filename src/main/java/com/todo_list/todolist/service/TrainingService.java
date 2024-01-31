@@ -4,10 +4,8 @@ import com.todo_list.todolist.dto.TrainingDto;
 import com.todo_list.todolist.dto.TrainingRequest;
 import com.todo_list.todolist.entities.Training;
 import com.todo_list.todolist.repository.TrainingRepository;
-import lombok.AllArgsConstructor;
 import org.hibernate.HibernateException;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,8 +16,11 @@ import java.util.stream.Collectors;
 @Service
 public class TrainingService {
 
-    @Autowired
-    private  TrainingRepository trainingRepository;
+    private final TrainingRepository trainingRepository;
+
+    public TrainingService(TrainingRepository trainingRepository) {
+        this.trainingRepository = trainingRepository;
+    }
 
     public List<TrainingDto> getAllTraining() {
         List<Training> trainings = trainingRepository.findAll();
@@ -36,15 +37,13 @@ public class TrainingService {
         return trainings.stream().map(this::convertToDto).collect(Collectors.toList());
     }
 
-    private @NotNull TrainingDto convertToDto (@NotNull Training training) {
-        TrainingDto trainingDto = new TrainingDto();
-        trainingDto.setId(training.getId());
-        trainingDto.setDate(training.getDate());
-        trainingDto.setSkill(training.getSkill());
-        trainingDto.setId(training.getId());
-        trainingDto.setStatus(training.getStatus());
-
-        return trainingDto;
+    private @NotNull TrainingDto convertToDto(@NotNull Training training) {
+        return TrainingDto.builder()
+                .id(training.getId())
+                .date(training.getDate())
+                .skill(training.getSkill())
+                .status(training.getStatus())
+                .build();
     }
 
     public boolean saveTraining(String skill, LocalDateTime date, String status) {

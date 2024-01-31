@@ -2,9 +2,7 @@ package com.todo_list.todolist.controller;
 
 import com.todo_list.todolist.dto.TrainingDto;
 import com.todo_list.todolist.service.TrainingService;
-import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +14,11 @@ import java.util.List;
 @RequestMapping("/")
 public class PageToDoList {
 
-    @Autowired
-    private TrainingService trainingService;
+    private final TrainingService trainingService;
+
+    public PageToDoList(TrainingService trainingService) {
+        this.trainingService = trainingService;
+    }
 
     @GetMapping("/")
     public String getTodoList(@NotNull Model model){
